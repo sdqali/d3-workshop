@@ -1,192 +1,231 @@
-<!doctype html>  
+<!doctype html>
 <html lang="en">
-	
-	<head>
-		<meta charset="utf-8">
-		
-		<title>reveal.js - HTML5 Presentations</title>
 
-		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
-		<meta name="author" content="Hakim El Hattab">
+    <head>
+        <meta charset="utf-8">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+        <title>Visualising data with d3.js</title>
 
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-	</head>
-	
-	<body>
-		
-		<div class="reveal">
+        <meta name="description" content="A workshop on using d3.js for
+                                          visualising data.">
+        <meta name="author" content="Sadique Ali">
 
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
-			
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3 class="inverted">CSS 3D Presentations</h3>
-					<script>
-						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-					</script>
-				</section>
-				
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is an easy to use, HTML based, presentation tool. You'll need a modern browser with 
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-					<p>
-						<i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
-					</p>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-					</aside>
-				</section>
-				
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,<br/>
-							try pressing <a href="#/2/1">down</a>.
-						</p>
-						<a href="#/2/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-				<section>
-					<h2>Holistic Overview</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview!
-					</p>
-				</section>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides pinch your way to the overview.
-					</p>
-				</section>
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+    </head>
 
-				<section>
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like:
-					</p>
-					<ul>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
-					</ul>
-				</section>
+    <body>
 
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
+        <div class="reveal">
 
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This let's you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#/7/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#/7/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#/7/0" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+            <!-- Used to fade in a background when a specific slide state is reached -->
+            <div class="state-background"></div>
 
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Visualising Data with d3.js</h1>
+                    <br />
+                    <h3 class="inverted">A Workshop</h3>
+                    <p>
+                        <i><a href="http://blog.sdqali.in">Sadique Ali</a>
+                        / <a href="http://twitter.com/sdqali">@sdqali</a></i>
+                    </p>
+                    <script>
+                        // Delicously hacky. Look away.
+                        if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+                    </script>
+                </section>
+
+                <section>
+                    <h2>Intro</h2>
+                    <p>
+                      d3 = Data Driven Documents
+                    </p>
+                    <p>
+                      Use existing representations - HTML and SVG
+                    </p>
+
+                    <aside class="notes">
+                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Data → Elements</h2>
+                    <p>
+                      No new representation
+                    </p>
+                    <p class="fragment">
+                      Construct DOM from data
+                    </p>
+                </section>
+
+                <section>
+                    <h2>SVG?</h2>
+                    <p class="fragment">
+                      Yes!
+                    </p>
+                </section>
+
+                <section>
+                  <h2>This</h2>
+                      <pre>
+                        <code contenteditable>
+&lt;!DOCTYPE html&gt;<br/>&lt;meta charset=&quot;utf-8&quot;&gt;<br/>&lt;svg width=&quot;960&quot; height=&quot;500&quot;&gt;<br/>    &lt;circle cx=&quot;480&quot; cy=&quot;250&quot; r=&quot;200&quot; fill=&quot;steelblue&quot;&gt;<br/>    &lt;/circle&gt;<br/>&lt;/svg&gt;<br/>
+                        </code>
+                      </pre>
+                </section>
+
+                <section>
+                    <h2>Renders This</h2>
+                    <svg width="960" height="500">
+                      <circle cx="480" cy="250" r="200" fill="steelblue">
+                      </circle>
+                    </svg>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>Vertical Slides</h2>
+                        <p>
+                            Slides can be nested inside of other slides,<br/>
+                            try pressing <a href="#/2/1">down</a>.
+                        </p>
+                        <a href="#/2/1" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Basement Level 1</h2>
+                        <p>Press down or up to navigate.</p>
+                    </section>
+                    <section>
+                        <h2>Basement Level 2</h2>
+                        <p>Cornify</p>
+                        <a class="test" href="http://cornify.com">
+                            <img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif">
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Basement Level 3</h2>
+                        <p>That's it, time to go back up.</p>
+                        <a href="#/2" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
+                        </a>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Holistic Overview</h2>
+                    <p>
+                        Press <strong>ESC</strong> to enter the slide overview!
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Works in Mobile Safari</h2>
+                    <p>
+                        Try it out! You can swipe through the slides pinch your way to the overview.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Transition Styles</h2>
+                    <p>
+                        You can select from different transitions, like:
+                    </p>
+                    <ul>
+                        <li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
+                        <li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
+                        <li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
+                        <li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Marvelous Unordered List</h2>
+                    <ul>
+                        <li>No order here</li>
+                        <li>Or here</li>
+                        <li>Or here</li>
+                        <li>Or here</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Fantastic Ordered List</h2>
+                    <ol>
+                        <li>One is smaller than...</li>
+                        <li>Two is smaller than...</li>
+                        <li>Three!</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <section data-state="alert">
+                        <h2>Global State</h2>
+                        <p>
+                            Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+                            will be added as a class to the document element when the slide is open. This let's you
+                            apply broader style changes, like switching the background.
+                        </p>
+                        <a href="#/7/1" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                        </a>
+                    </section>
+                    <section data-state="blackout">
+                        <h2>"blackout"</h2>
+                        <a href="#/7/2" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                        </a>
+                    </section>
+                    <section data-state="soothe">
+                        <h2>"soothe"</h2>
+                        <a href="#/7/0" class="image">
+                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
+                        </a>
+                    </section>
+                </section>
+
+                <section data-state="customevent">
+                    <h2>Custom Events</h2>
+                    <p>
+                        Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+                    </p>
+                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
+    console.log( '"customevent" has fired' );
 } );
-					</code></pre>
-				</section>
+                    </code></pre>
+                </section>
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would 
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-					</blockquote>
-				</section>
-				
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code contenteditable>
+                <section>
+                    <h2>Clever Quotes</h2>
+                    <p>
+                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                        The nice thing about standards is that there are so many to choose from</q> and block:
+                    </p>
+                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                        For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>Pretty Code</h2>
+                    <pre><code contenteditable>
 function linkify( selector ) {
   if( supports3DTransforms ) {
-    
+
     var nodes = document.querySelectorAll( selector );
 
     for( var i = 0, len = nodes.length; i < len; i++ ) {
@@ -198,111 +237,111 @@ function linkify( selector ) {
     };
   }
 }
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-				
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,<br/>
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+                    </code></pre>
+                    <p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+                </section>
 
-				<section>
-					<h2>Fragmented Views</h2>
-					<p>Hit the next arrow...</p>
-					<p class="fragment">... to step through ...</p>
-					<ol>
-						<li class="fragment"><code>any type</code></li>
-						<li class="fragment"><em>of view</em></li>
-						<li class="fragment"><strong>fragments</strong></li>
-					</ol>
-				</section>
-				
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
-						<img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
-					</a>
-				</section>
-				
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
-						<li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>THE END</h1>
-					<h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
-				</section>
-			</div>
+                <section>
+                    <h2>Intergalactic Interconnections</h2>
+                    <p>
+                        You can link between slides internally,<br/>
+                        <a href="#/2/3">like this</a>.
+                    </p>
+                </section>
 
-			<!-- The navigational controls UI -->
-			<aside class="controls">
-				<a class="left" href="#">&#x25C4;</a>
-				<a class="right" href="#">&#x25BA;</a>
-				<a class="up" href="#">&#x25B2;</a>
-				<a class="down" href="#">&#x25BC;</a>
-			</aside>
+                <section>
+                    <h2>Fragmented Views</h2>
+                    <p>Hit the next arrow...</p>
+                    <p class="fragment">... to step through ...</p>
+                    <ol>
+                        <li class="fragment"><code>any type</code></li>
+                        <li class="fragment"><em>of view</em></li>
+                        <li class="fragment"><strong>fragments</strong></li>
+                    </ol>
+                </section>
 
-			<!-- Presentation progress bar -->
-			<div class="progress"><span></span></div>
-			
-		</div>
+                <section>
+                    <h2>Spectacular image!</h2>
+                    <a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
+                        <img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
+                    </a>
+                </section>
 
-		<script src="lib/js/head.min.js"></script>
+                <section>
+                    <h2>Stellar Links</h2>
+                    <ul>
+                        <li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
+                        <li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
+                        <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+                    </ul>
+                </section>
 
-		<script>
-			// Load reveal.js as well as a classList polyfill if needed
-			head.js( !document.body.classList ? 'lib/js/classList.js' : null )
-				.js( 'js/reveal.js', function() {
+                <section>
+                    <h1>THE END</h1>
+                    <h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
+                </section>
+            </div>
 
-				// Parse the query string into a key/value object
-				var query = {};
-				location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-					query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-				} );
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
 
-				// Fires when a slide with data-state=customevent is activated
-				Reveal.addEventListener( 'customevent', function() {
-					console.log( '"customevent" has fired' );
-				} );
+            <!-- Presentation progress bar -->
+            <div class="progress"><span></span></div>
 
-				// Fires each time a new slide is activated
-				Reveal.addEventListener( 'slidechanged', function( event ) {
-					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-				} );
+        </div>
 
-				// Full list of configuration options available here:
-				// https://github.com/hakimel/reveal.js#configuration
-				Reveal.initialize({
-					controls: true,
-					progress: true,
-					history: true,
-					
-					theme: query.theme || 'default', // default/neon/beige
-					transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
-				});
+        <script src="lib/js/head.min.js"></script>
 
-			} );
-			
-			// Load highlight.js for syntax highlighting of code samples
-			head.js( 'lib/js/highlight.js', function() { 
-				hljs.initHighlightingOnLoad(); 
-			} );
+        <script>
+            // Load reveal.js as well as a classList polyfill if needed
+            head.js( !document.body.classList ? 'lib/js/classList.js' : null )
+                .js( 'js/reveal.js', function() {
 
-			// If we're runnning the notes server we need to include some additional JS
-			// TODO Is there a better way to determine if we're running the notes server?
-			if( window.location.host === 'localhost:1947' ) {
-				head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
-			}
-		</script>
-		
-	</body>
+                // Parse the query string into a key/value object
+                var query = {};
+                location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                    query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+                } );
+
+                // Fires when a slide with data-state=customevent is activated
+                Reveal.addEventListener( 'customevent', function() {
+                    console.log( '"customevent" has fired' );
+                } );
+
+                // Fires each time a new slide is activated
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                } );
+
+                // Full list of configuration options available here:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                    controls: true,
+                    progress: true,
+                    history: true,
+
+                    theme: query.theme || 'beige', // default/neon/beige
+                    transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+                });
+
+            } );
+
+            // Load highlight.js for syntax highlighting of code samples
+            head.js( 'lib/js/highlight.js', function() {
+                hljs.initHighlightingOnLoad();
+            } );
+
+            // If we're runnning the notes server we need to include some additional JS
+            // TODO Is there a better way to determine if we're running the notes server?
+            if( window.location.host === 'localhost:1947' ) {
+                head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+            }
+        </script>
+
+    </body>
 </html>
