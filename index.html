@@ -20,6 +20,19 @@
         <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
 
         <link rel="stylesheet" href="lib/css/zenburn.css">
+        <script type='text/javascript' src='/js/d3.v2.min.js'>
+        </script>
+        <style type='text/css'>
+          .vis {
+            font-size: 50%;
+            background: red;
+          }
+
+          .chart rect {
+          stroke: white;
+          fill: SteelBlue;
+          }
+        </style>
     </head>
 
     <body>
@@ -31,255 +44,517 @@
 
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section>
-                    <h1>Visualising Data with d3.js</h1>
-                    <br />
-                    <h3 class="inverted">A Workshop</h3>
-                    <p>
-                        <i><a href="http://blog.sdqali.in">Sadique Ali</a>
-                        / <a href="http://twitter.com/sdqali">@sdqali</a></i>
-                    </p>
-                    <script>
-                        // Delicously hacky. Look away.
-                        if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
-                    </script>
-                </section>
+<section>
+  <h1 class="caption">Visualising data with d3.js</h1>
+</section>
 
-                <section>
-                    <h2>Intro</h2>
-                    <p>
-                      d3 = Data Driven Documents
-                    </p>
-                    <p>
-                      Use existing representations - HTML and SVG
-                    </p>
+<section>
+  <p> Sadique Ali </p>
+  <p>
+    <a href="http://github.com/sdqali">@sdqali</a> <br />
+    <a href="http://blog.sdqali.in/" rel="author">blog.sdqali.in</a>
+  </p>
+</section>
 
-                    <aside class="notes">
-                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-                    </aside>
-                </section>
+<section>
+  <h1>Credits</h1>
+  <p>Mike Bostock</p>
+</section>
 
-                <section>
-                    <h2>Data → Elements</h2>
-                    <p>
-                      No new representation
-                    </p>
-                    <p class="fragment">
-                      Construct DOM from data
-                    </p>
-                </section>
+<section>
+  <h1>d3 ?</h1>
+</section>
 
-                <section>
-                    <h2>SVG?</h2>
-                    <p class="fragment">
-                      Yes!
-                    </p>
-                </section>
+<section>
+  <h1>d3.js == visualisations</h1>
+</section>
+<section>
+  <h1>d3 = Data Driven Documents</h1>
+</section>
 
-                <section>
-                  <h2>This</h2>
-                      <pre>
-                        <code contenteditable>
+<section>
+  <h2>Data → Elements</h2>
+  <p>
+    No new representation
+  </p>
+  <p>
+    Construct DOM from data
+  </p>
+</section>
+
+<section>
+  <h2>
+    Existing representations
+  </h2>
+  <p>
+    HTML <br />
+    SVG
+  </p>
+
+  <p>
+    Well understood
+  </p>
+</section>
+
+<section>
+  <h2>SVG?</h2>
+  <p>
+    Yes!
+  </p>
+</section>
+
+<section>
+  <h2>This</h2>
+  <pre>
+    <code contenteditable>
 &lt;!DOCTYPE html&gt;<br/>&lt;meta charset=&quot;utf-8&quot;&gt;<br/>&lt;svg width=&quot;960&quot; height=&quot;500&quot;&gt;<br/>    &lt;circle cx=&quot;480&quot; cy=&quot;250&quot; r=&quot;200&quot; fill=&quot;steelblue&quot;&gt;<br/>    &lt;/circle&gt;<br/>&lt;/svg&gt;<br/>
-                        </code>
-                      </pre>
-                </section>
+    </code>
+  </pre>
+</section>
 
-                <section>
-                    <h2>Renders This</h2>
-                    <svg width="960" height="500">
-                      <circle cx="480" cy="250" r="200" fill="steelblue">
-                      </circle>
-                    </svg>
-                </section>
+<section>
+  <h2>Renders This</h2>
+  <svg width="960" height="500" style="position:absolute;bottom:15;">
+    <circle cx="480" cy="250" r="200" fill="steelblue">
+    </circle>
+  </svg>
+</section>
 
-                <!-- Example of nested vertical slides -->
-                <section>
-                    <section>
-                        <h2>Vertical Slides</h2>
-                        <p>
-                            Slides can be nested inside of other slides,<br/>
-                            try pressing <a href="#/2/1">down</a>.
-                        </p>
-                        <a href="#/2/1" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-                        </a>
-                    </section>
-                    <section>
-                        <h2>Basement Level 1</h2>
-                        <p>Press down or up to navigate.</p>
-                    </section>
-                    <section>
-                        <h2>Basement Level 2</h2>
-                        <p>Cornify</p>
-                        <a class="test" href="http://cornify.com">
-                            <img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif">
-                        </a>
-                    </section>
-                    <section>
-                        <h2>Basement Level 3</h2>
-                        <p>That's it, time to go back up.</p>
-                        <a href="#/2" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-                        </a>
-                    </section>
-                </section>
+<section>
+  <h2>Enough Talk!</h2>
+  <h2 class="fragment">Show me the Code!</h2>
+</section>
 
-                <section>
-                    <h2>Holistic Overview</h2>
-                    <p>
-                        Press <strong>ESC</strong> to enter the slide overview!
-                    </p>
-                </section>
+<section>
+  <h2>Run this:</h2>
+  <pre class="fragment"><code contenteditable>
+python -m SimpleHTTPServer 7654
+  </code></pre>
+  <p class="fragment">You can thank me later!</p>
+</section>
 
-                <section>
-                    <h2>Works in Mobile Safari</h2>
-                    <p>
-                        Try it out! You can swipe through the slides pinch your way to the overview.
-                    </p>
-                </section>
+<section>
+  <h2>Bar Charts</h2>
+  <p class="fragment">01-barchart.html</p>
+</section>
 
-                <section>
-                    <h2>Transition Styles</h2>
-                    <p>
-                        You can select from different transitions, like:
-                    </p>
-                    <ul>
-                        <li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-                        <li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-                        <li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-                        <li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
-                    </ul>
-                </section>
+<section>
+  <h1>Deaths in traffic accidents</h1>
+  <div id="barchart">
+  </div>
+  <script type='text/javascript'>
+    drawbarChart();
+  </script>
+</section>
 
-                <section>
-                    <h2>Marvelous Unordered List</h2>
-                    <ul>
-                        <li>No order here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                    </ul>
-                </section>
+<section>
+  <h1>
+    It has got nothing to do with the fact that I am a pedestrian :-)
+  </h1>
+</section>
 
-                <section>
-                    <h2>Fantastic Ordered List</h2>
-                    <ol>
-                        <li>One is smaller than...</li>
-                        <li>Two is smaller than...</li>
-                        <li>Three!</li>
-                    </ol>
-                </section>
+<section>
+  <h1>Let's see what is under the cover</h1>
+</section>
 
-                <section>
-                    <section data-state="alert">
-                        <h2>Global State</h2>
-                        <p>
-                            Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-                            will be added as a class to the document element when the slide is open. This let's you
-                            apply broader style changes, like switching the background.
-                        </p>
-                        <a href="#/7/1" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-                        </a>
-                    </section>
-                    <section data-state="blackout">
-                        <h2>"blackout"</h2>
-                        <a href="#/7/2" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-                        </a>
-                    </section>
-                    <section data-state="soothe">
-                        <h2>"soothe"</h2>
-                        <a href="#/7/0" class="image">
-                            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-                        </a>
-                    </section>
-                </section>
+<section>
+  <pre> <code>
+&lt;div id=&quot;barchart&quot;&gt;<br/>&lt;/div&gt;<br/>
+</code> </pre>
+<h2>
+  This is where we draw!
+</h2>
+</section>
 
-                <section data-state="customevent">
-                    <h2>Custom Events</h2>
-                    <p>
-                        Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-                    </p>
-                    <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
-    console.log( '"customevent" has fired' );
-} );
-                    </code></pre>
-                </section>
+<section>
+  <pre> <code>
+var data = [820, 883, 903, 836,
+  915, 981, 892, 761, 858, 757, 363];
+  </code> </pre>
+  <h2>
+    That's the data!
+  </h2>
+</section>
 
-                <section>
-                    <h2>Clever Quotes</h2>
-                    <p>
-                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        The nice thing about standards is that there are so many to choose from</q> and block:
-                    </p>
-                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-                    </blockquote>
-                </section>
+<section>
+  <pre>
+var chart = d3.select("#barchart")
+  .append("svg")
+  .attr ("class", "chart")
+  .attr ("width", 1000)
+  .attr ("height", 20 * data.length);
+  </pre>
+  <h2>
+    Let's build an SVG!
+  </h2>
+</section>
 
-                <section>
-                    <h2>Pretty Code</h2>
-                    <pre><code contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+<section>
+  <h2>Selectors</h2>
+  <ul>
+    <li><code>select</code></li>
+    <li><code>selectAll</code></li>
+  </ul>
+</section>
 
-    var nodes = document.querySelectorAll( selector );
+<section>
+  <h2>Use CSS selectors</h2>
+<pre> <code>
+#foo        //&lt;any id=&quot;foo&quot;&gt;<br/>foo         //&lt;foo&gt;<br/>.foo        //&lt;anyclass=&quot;foo&quot;&gt;<br/>[foo=bar]   //&lt;any foo=&quot;bar&quot;&gt;<br/>foo bar     //&lt;foo&gt;&lt;bar&gt;&lt;/foo&gt;<br/>
+</pre> </code>
+</section>
 
-    for( var i = 0, len = nodes.length; i < len; i++ ) {
-      var node = nodes[i];
+<section>
+  <h1> Selections are Powerful </h1>
+  <h2> We will see...</h2>
+</section>
 
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
+<section>
+  <pre> <code>
+selection.append("svg")
+  </pre> </code>
+  <h2> Appends an SVG </h2>
+</section>
+
+<section>
+  <pre> <code>
+selection.attr("width", 1000)
+  </pre> </code>
+  <h2> Sets attributes </h2>
+</section>
+
+<section>
+  <h2>Attributes could be anything</h2>
+  <ul>
+    <li>radius</li>
+    <li>x, y coords</li>
+    <li>text</li>
+    <li>classname</li>
+    <li>etc.</li>
+  </ul>
+</section>
+
+<section>
+  <pre style="position:absolute;top:100;"> <code>
+chart.selectAll ("rect")
+  .data (data)
+  .enter ()
+  .append ("rect")
+  .attr ("width", function (d) {
+    return d;
+  })
+  </pre> </code>
+</section>
+
+<section>
+  <h2>Let's simplify that!</h2>
+</section>
+
+<section>
+  <pre> <code>
+var rectangles = chart.selectAll("rect")
+                      .data(data)
+  </pre> </code>
+  <p>rects correspond to data</p>
+  <p><code>data</code> provides <code>enter</code> and <code>exit</code></p>
+</section>
+
+<section>
+  <pre> <code>
+var rectangles = chart.selectAll("rect")
+                      .data(data)
+rectangles.enter()
+          .append("rect")
+  </pre> </code>
+  <p><code>append</code> on <code>enter()</code> adds missing elements</p>
+</section>
+
+<section>
+  <pre> <code>
+var rectangles = chart.selectAll("rect")
+                      .data(data)
+rectangles.enter()
+          .append("rect")
+          .attr("y", function(d, i) {
+                           return i * 20;
+                      })
+  </pre> </code>
+  <p>Elements are bound to data</p>
+</section>
+
+<section>
+  <h2>Lets revisit this!</h2>
+</section>
+
+<section>
+  <h2>Hard coded values</h2>
+  <p>Heights and Widths</p>
+  <p>Size of dataset</p>
+</section>
+
+<section>
+  <h2>Enter scales</h2>
+</section>
+
+<section>
+  <h2>Domain → Range</h2>
+</section>
+
+<section>
+  <h2>Qunatitative Scales</h2>
+</section>
+
+<section>
+  <pre> <code>
+var x = d3.scale.linear()
+    .domain([12, 24])
+    .range([0, 720]);
+
+x(16); // 240
+  </pre> </code>
+  <p>
+Linear scale:  Translate and Scale
+  </p>
+</section>
+
+<section>
+  <pre> <code>
+var x = d3.scale.sqrt()
+    .domain([12, 24])
+    .range([0, 720]);
+
+x(16); // 268.9056992603583
+  </pre> </code>
+  <p>
+    sqrt - exponential <br/>
+    Useful for circles
+  </p>
+</section>
+
+<section>
+  <pre> <code>
+var x = d3.scale.log()
+    .domain([12, 24])
+    .range([0, 720]);
+
+x(16); // 298.82699948076737
+  </pre> </code>
+  <p>
+    log - you get the idea
+  </p>
+</section>
+
+<section>
+  <h2>Interpolation</h2>
+</section>
+
+<section>
+  <pre> <code>
+var x = d3.scale.linear()
+    .domain([12, 24])
+    .range(["steelblue", "brown"]);
+
+x(16); // #666586
+  </pre> </code>
+  <p>
+    Isn't that cool?
+  </p>
+</section>
+
+<section>
+  <h2>Ordinal Scales</h2>
+</section>
+
+<section>
+  <pre> <code>
+var x = d3.scale.ordinal()
+    .domain(["A", "B", "C", "D"])
+    .range([0, 10, 20, 30]);
+
+x("B"); // 10
+  </pre> </code>
+  <p>
+    Explicit mapping
+  </p>
+</section>
+
+<section>
+<div class="color palette"><div class="label">d3.scale.category20</div><div class="swatch" style="background-color: rgb(31, 119, 180); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(174, 199, 232); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(255, 127, 14); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(255, 187, 120); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(44, 160, 44); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(152, 223, 138); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(214, 39, 40); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(255, 152, 150); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(148, 103, 189); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(197, 176, 213); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(140, 86, 75); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(196, 156, 148); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(227, 119, 194); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(247, 182, 210); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(127, 127, 127); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(199, 199, 199); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(188, 189, 34); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(219, 219, 141); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(23, 190, 207); background-position: initial initial; background-repeat: initial initial; "></div><div class="swatch" style="background-color: rgb(158, 218, 229); background-position: initial initial; background-repeat: initial initial; "></div></div>
+</section>
+
+<section>
+  <h2>Barchart, redone!</h2>
+  <p> 02-barchart2.html </p>
+  <p> Using scales </p>
+</section>
+
+<section>
+  <div id="barchart2">
+  </div>
+  <script type='text/javascript'>
+    drawbarChart2();
+  </script>
+</section>
+
+<section>
+  <h2>That still needs improvement</h2>
+  <p>Axes <br/ > Labeling </p>
+</section>
+
+<section>
+  <h2>Axes</h2>
+  <p>Labeling for scales</p>
+</section>
+
+<section>
+  <h2>Barchart, with Axes!</h2>
+  <p> 03-barchart3.html </p>
+</section>
+
+<section>
+  <div id="barchart3">
+  </div>
+  <script type='text/javascript'>
+    drawbarChart3();
+  </script>
+</section>
+
+<section>
+  <pre> <code>
+var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left");
+  </pre> </code>
+  <p>
+    Create an Axis
+  </p>
+</section>
+
+<section>
+  <pre> <code>
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+  </pre> </code>
+  <p>
+    Append it to <code>g</code>
+  </p>
+</section>
+
+<section>
+  <h2>Rules</h2>
+</section>
+
+<section>
+  <h2>Barchart, with Axes and Rules</h2>
+  <p> 04-barchart4.html </p>
+</section>
+
+<section>
+  <div id="barchart4">
+  </div>
+  <script type='text/javascript'>
+    drawbarChart4();
+  </script>
+</section>
+
+<section>
+  <pre> <code>
+var yRule = chart.append("g")
+  .selectAll(".rule")
+  .data(xScale.ticks(20))
+  .enter()
+  .append("g");
+  </pre> </code>
+  <p>
+    Create <code>g</code> using <code>Ticks</code>
+  </p>
+</section>
+
+<section>
+  <pre> <code>
+var yRule = chart.append("g")
+  .selectAll(".rule")
+  .data(xScale.ticks(20))
+  .enter()
+  .append("g");
+yRule.append("line")
+  .attr("y2", height - 2 * margins.bottom);
+  </pre> </code>
+  <p>
+    Draw a line for each tick
+  </p>
+</section>
+
+<section>
+  <h2>Let's build something</p>
+</section>
+
+<section>
+  <h2>Objective</h2>
+  <p>
+    Scatterplot
+  </p>
+  <p>
+    Scale
+  </p>
+  <p>
+    Axes
+  </p>
+  <p>
+    Rules
+  </p>
+</section>
+
+<section>
+  <h2> What is a scatterplot? </h2>
+  <a href="scatterplot.html">This</a>
+</section>
+
+<section>
+  <h2>Resources</h2>
+  <p>scatterplot.html</p>
+  <p>bowlers.json</p>
+</section>
+
+<section>
+  <pre> <code contenteditable>
+{
+ "cap"=>1, "name"=>"Amar Singh",
+ "debut_year"=>1932,
+ "series"=>"india in england, 1932",
+ "winner"=>"eng",
+ "performance"=>{
+      "Mat"=>"1", "Runs"=>"56",
+      "HS"=>"51", "BatAv"=>"28.00",
+      "100s"=>"0", "50s"=>"1",
+      "W"=>"4", "BB"=>"2/75", "Ct"=>"0"
+      "BowlAv"=>"39.75", "5w"=>"0",
   }
 }
-                    </code></pre>
-                    <p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-                </section>
+  </code> </pre>
+</section>
 
-                <section>
-                    <h2>Intergalactic Interconnections</h2>
-                    <p>
-                        You can link between slides internally,<br/>
-                        <a href="#/2/3">like this</a>.
-                    </p>
-                </section>
+<section>
+  <pre> <code>
+      d.name
+  </code> </pre>
+  <pre> <code>
+      d.country
+  </code> </pre>
+  <pre> <code>
+      d.performance.BowlAv
+  </code> </pre>
+</section>
 
-                <section>
-                    <h2>Fragmented Views</h2>
-                    <p>Hit the next arrow...</p>
-                    <p class="fragment">... to step through ...</p>
-                    <ol>
-                        <li class="fragment"><code>any type</code></li>
-                        <li class="fragment"><em>of view</em></li>
-                        <li class="fragment"><strong>fragments</strong></li>
-                    </ol>
-                </section>
+<section>
+  <h2>Questions?</h2>
+</section>
 
-                <section>
-                    <h2>Spectacular image!</h2>
-                    <a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
-                        <img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png">
-                    </a>
-                </section>
-
-                <section>
-                    <h2>Stellar Links</h2>
-                    <ul>
-                        <li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
-                        <li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
-                        <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h1>THE END</h1>
-                    <h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
-                </section>
+<section>
+  <h2>Thank You</h2>
+  <p> I need feedback! </p>
+</section>
             </div>
 
             <!-- The navigational controls UI -->

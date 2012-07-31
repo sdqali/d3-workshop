@@ -1,0 +1,29 @@
+* DONE Speaker Intro
+  CLOSED: [2012-07-31 Tue 01:07]
+* DONE D3 Intro
+  CLOSED: [2012-07-31 Tue 01:08]
+* DONE SVG
+  CLOSED: [2012-07-31 Tue 01:41]
+** Example circle
+* DONE Lets see the code
+  CLOSED: [2012-07-31 Tue 01:41]
+  - CLOSING NOTE [2012-07-31 Tue 01:41]
+* DONE Bar chart
+  CLOSED: [2012-07-31 Tue 01:42]
+  - CLOSING NOTE [2012-07-31 Tue 01:42]
+* Disect
+** DONE Enter()
+   CLOSED: [2012-07-31 Tue 01:42]
+   - CLOSING NOTE [2012-07-31 Tue 01:42]
+** Data()
+** Attributes
+* Improved barchart with scales
+** Domain -> Range
+** Interpolation
+** Category scales
+* Axes
+* Ticks
+* Loading data
+* Scatterplot from csv file
+* Exercise
+** Cricket data
