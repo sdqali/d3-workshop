@@ -2,7 +2,7 @@ function drawbarChart () {
   var data = [820, 883, 903, 836, 915, 981, 892, 761, 858, 757, 363];
   var chart = d3.select("#barchart").append("svg")
     .attr ("class", "chart")
-    .attr ("width", 800)
+    .attr ("width", 1000)
     .attr ("height", 20 * data.length);
 
 // Draw rectangles

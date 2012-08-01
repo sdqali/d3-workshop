@@ -111,7 +111,7 @@ d3.json("bowlers.json", function(dataset) {
   var yLabel = svg.append("g");
   yLabel.append("text")
     .text("Wickets")
-    .attr("text-anchor", "middle");
+     .attr("text-anchor", "middle");
   yLabel.attr("transform", "translate(" + padding/2 + "," +  (height - padding)/2 +") rotate(270)");
 
   var xRule = svg.append("g")

@@ -21,11 +21,11 @@
 
         <link rel="stylesheet" href="lib/css/zenburn.css">
         <script type='text/javascript' src='/js/d3.v2.min.js'>
+        </script>
           <script src="js/barchart.js"></script>
           <script src="js/barchart2.js"></script>
           <script src="js/barchart3.js"></script>
           <script src="js/barchart4.js"></script>
-        </script>
         <style type='text/css'>
           .vis {
             font-size: 50%;
@@ -609,7 +609,7 @@ yRule.append("line")
                     progress: true,
                     history: true,
 
-                    theme: query.theme || 'default', // default/neon/beige
+                    theme: query.theme || 'neon', // default/neon/beige
                     transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
                 });
 
